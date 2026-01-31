@@ -560,6 +560,12 @@ $categories = [
         'desc_title' => 'Steelworks',
         'desc' => 'Specialized hull plating renewal, structural repairs, and custom steel fabrication. We utilize high-grade materials and certified welding procedures for all maritime metalwork.',
         'folder' => 'img/our_work/steel'
+    ],
+    'workshop' => [
+        'title' => 'Workshop',
+        'desc_title' => 'Workshop Services',
+        'desc' => 'Comprehensive workshop facilities for component rebuilding, valve reconditioning, and precision machining. Our local facility ensures fast turnaround times for critical vessel parts.',
+        'folder' => 'img/our_work/workshop'
     ]
 ];
 

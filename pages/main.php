@@ -266,7 +266,8 @@ if (isset($_POST['submit_callback'])) {
                     'coat' => 'Coating Works',
                     'dd' => 'Dry Dock',
                     'mec' => 'Mechanical',
-                    'steel' => 'Steel Works'
+                    'steel' => 'Steel Works',
+                    'workshop' => 'Workshop'
                 ];
                 $all_available_images = [];
                 foreach ($category_names as $folder => $name) {
