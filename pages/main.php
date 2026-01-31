@@ -163,7 +163,7 @@ if (isset($_POST['submit_callback'])) {
                     $slider_pairs = [];
 
                     if (is_dir($conv_folder)) {
-                        $files = glob($conv_folder . '/*.{jpg,jpeg,png,JPG,JPEG,PNG}', GLOB_BRACE);
+                        $files = glob($conv_folder . '/*.{jpg,jpeg,png,JPG,JPEG,PNG,webp,WEBP}', GLOB_BRACE);
                         foreach ($files as $file) {
                             $filename = basename($file);
                             // Check if it follows 'number[before|after].ext' pattern
@@ -207,7 +207,8 @@ if (isset($_POST['submit_callback'])) {
                                                 </div>
                                                 <div class="compare-img before-img"
                                                     style="clip-path: inset(0 20% 0 0); width: 100%;">
-                                                    <img class="owl-lazy" data-src="<?php echo htmlspecialchars($pair['before']); ?>"
+                                                    <img class="owl-lazy"
+                                                        data-src="<?php echo htmlspecialchars($pair['before']); ?>"
                                                         alt="Before transformation - Project <?php echo $num; ?>">
                                                     <div class="label label-before" aria-hidden="true">BEFORE</div>
                                                 </div>
@@ -271,7 +272,7 @@ if (isset($_POST['submit_callback'])) {
                 foreach ($category_names as $folder => $name) {
                     $path = "img/our_work/$folder";
                     if (is_dir($path)) {
-                        $imgs = glob($path . "/*.{jpg,jpeg,png,JPG,JPEG,PNG}", GLOB_BRACE);
+                        $imgs = glob($path . "/*.{jpg,jpeg,png,JPG,JPEG,PNG,webp,WEBP}", GLOB_BRACE);
                         if ($imgs) {
                             foreach ($imgs as $img) {
                                 $all_available_images[] = [

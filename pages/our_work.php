@@ -569,7 +569,7 @@ function getImages($folder)
     if (!is_dir($folder))
         return [];
 
-    $files = glob($folder . '/*.{jpg,jpeg,png,JPG,JPEG,PNG}', GLOB_BRACE);
+    $files = glob($folder . '/*.{jpg,jpeg,png,JPG,JPEG,PNG,webp,WEBP}', GLOB_BRACE);
 
     // Natural sorting to follow meaningful naming (e.g., sac1, sac2, sac10)
     natsort($files);
