@@ -1,0 +1,17 @@
+# Admin Uploads
+admin/uploads/*
+!admin/uploads/.gitkeep
+
+# Logs
+*.log
+
+# Database Backups (if any)
+*.sql
+
+# Temp files
+.DS_Store
+Thumbs.db
+
+# System files
+.bak
+.swp
