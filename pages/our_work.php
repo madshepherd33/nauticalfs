@@ -228,8 +228,20 @@
         /* Fix for rotated WebP images */
     }
 
-    .gallery-item:hover img {
+    /* Manual rotation fix for specific images */
+    .rotate-90 {
+        transform: rotate(90deg) !important;
+    }
+
+    .gallery-item:hover .rotate-90 {
+        transform: rotate(90deg) scale(1.08) !important;
+    }
+
+    .gallery-item:hover img:not(.rotate-90) {
         transform: scale(1.08);
+    }
+
+    .gallery-item:hover img {
         filter: grayscale(0%) contrast(110%) brightness(105%);
     }
 
@@ -644,10 +656,21 @@ function getImages($folder)
                     <?php foreach ($images as $index => $img): ?>
                         <div class="gallery-item" data-index="<?php echo $index; ?>"
                             style="animation-delay: <?php echo $index * 0.05; ?>s;">
-                            <img src="<?php echo $img; ?>" alt="<?php echo $cat['title']; ?>" loading="lazy">
+                            <?php
+                            $rotatedImages = ['mec1.webp', 'mec4.webp', 'mec5.webp', 'mec6.webp', 'mec19.webp'];
+                            $isRotated = false;
+                            foreach ($rotatedImages as $rImg) {
+                                if (strpos($img, $rImg) !== false) {
+                                    $isRotated = true;
+                                    break;
+                                }
+                            }
+                            ?>
+                            <img src="<?php echo $img; ?>" alt="<?php echo $cat['title']; ?>" 
+                                             class="<?php echo $isRotated ? 'rotate-90' : ''; ?>" loading="lazy">
                             <div class="gallery-item-overlay">
                                 <div class="gallery-item-info">
-                                    <p>Click to view full size</p> </div>
+                                    <p>Click to view full size</p>
                                 </div>
                             </div>
                         <?php endforeach; ?>
@@ -796,16 +819,25 @@ function getImages($folder)
 
             // Hide immediately to prevent flash of old image
             lbImg.style.opacity = '0';
-            lbImg.classList.remove('slide-left', 'slide-right');
-            
+            lbImg.classList.remove('slide-left', 'slide-right', 'rotate-90'); // Clear rotation
+
             // Small timeout to allow source change and reflow
             setTimeout(() => {
-                lbImg.src = currentImages[currentIndex].src;
+                const src = currentImages[currentIndex].src;
+                lbImg.src = src;
                 currentSpan.textContent = currentIndex + 1;
-                
+
+                // Re-apply rotation if source image is one of the target files
+                const rotatedImages = ['mec1.webp', 'mec4.webp', 'mec5.webp', 'mec6.webp', 'mec19.webp'];
+                rotatedImages.forEach(rImg => {
+                    if (src.includes(rImg)) {
+                        lbImg.classList.add('rotate-90');
+                    }
+                });
+
                 // Trigger reflow
                 void lbImg.offsetWidth;
-                
+
                 lbImg.classList.add(direction === 'left' ? 'slide-left' : 'slide-right');
                 lbImg.style.opacity = '1';
             }, 50);
