@@ -224,6 +224,8 @@
         border-radius: 8px;
         transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), filter 0.4s ease;
         filter: grayscale(20%) contrast(105%) brightness(98%);
+        image-orientation: from-image;
+        /* Fix for rotated WebP images */
     }
 
     .gallery-item:hover img {
@@ -242,7 +244,8 @@
         opacity: 0;
         transition: opacity 0.4s ease;
         display: flex;
-        align-items: flex-end;
+        align-items: center;
+        /* Centered overlay text */
         justify-content: center;
         padding: 20px;
         border-radius: 8px;
@@ -330,14 +333,16 @@
     }
 
     .lightbox-img {
-        max-width: 100%;
-        max-height: 90vh;
+        max-width: 90vw;
+        max-height: 85vh;
         object-fit: contain;
-        border-radius: 8px;
-        box-shadow: 0 0 60px rgba(0, 0, 0, 0.8);
-        filter: grayscale(0%) contrast(105%) saturate(105%);
+        border-radius: 4px;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
         cursor: zoom-in;
-        transition: transform 0.3s ease, opacity 0.3s ease;
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
+        user-select: none;
+        image-orientation: from-image;
+        /* Fix for rotated WebP images */
         opacity: 1;
     }
 
@@ -349,24 +354,24 @@
     @keyframes slideIn {
         from {
             opacity: 0;
-            transform: translateX(50px) scale(0.9);
+            transform: translateX(100px);
         }
 
         to {
             opacity: 1;
-            transform: translateX(0) scale(1);
+            transform: translateX(0);
         }
     }
 
     @keyframes slideInReverse {
         from {
             opacity: 0;
-            transform: translateX(-50px) scale(0.9);
+            transform: translateX(-100px);
         }
 
         to {
             opacity: 1;
-            transform: translateX(0) scale(1);
+            transform: translateX(0);
         }
     }
 
@@ -642,18 +647,16 @@ function getImages($folder)
                             <img src="<?php echo $img; ?>" alt="<?php echo $cat['title']; ?>" loading="lazy">
                             <div class="gallery-item-overlay">
                                 <div class="gallery-item-info">
-                                    <h4><?php echo $cat['title']; ?></h4>
-                                    <p>Click to view full size</p>
+                                    <p>Click to view full size</p> </div>
                                 </div>
                             </div>
-                        </div>
-                    <?php endforeach; ?>
-                <?php endif; ?>
-            </div>
-            <?php $isFirst = false; ?>
-        <?php endforeach; ?>
+                        <?php endforeach; ?>
+                    <?php endif; ?>
+                </div>
+                <?php $isFirst = false; ?>
+            <?php endforeach; ?>
 
-    </div>
+        </div>
 </section>
 
 <!-- Lightbox -->
@@ -791,26 +794,43 @@ function getImages($folder)
             // Reset zoom
             resetZoom();
 
-            // Fade out current image
+            // Hide immediately to prevent flash of old image
             lbImg.style.opacity = '0';
-
+            lbImg.classList.remove('slide-left', 'slide-right');
+            
+            // Small timeout to allow source change and reflow
             setTimeout(() => {
-                // Remove old animation classes
-                lbImg.classList.remove('slide-left', 'slide-right');
-
-                // Trigger reflow
-                void lbImg.offsetWidth;
-
-                // Set new source
                 lbImg.src = currentImages[currentIndex].src;
                 currentSpan.textContent = currentIndex + 1;
-
-                // Add animation class
+                
+                // Trigger reflow
+                void lbImg.offsetWidth;
+                
                 lbImg.classList.add(direction === 'left' ? 'slide-left' : 'slide-right');
-
-                // Fade back in
                 lbImg.style.opacity = '1';
-            }, 150);
+            }, 50);
+        }
+
+        // Swipe support
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        lightbox.addEventListener('touchstart', e => {
+            touchStartX = e.changedTouches[0].screenX;
+        }, { passive: true });
+
+        lightbox.addEventListener('touchend', e => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        }, { passive: true });
+
+        function handleSwipe() {
+            const swipeThreshold = 50;
+            if (touchEndX < touchStartX - swipeThreshold) {
+                nextImage();
+            } else if (touchEndX > touchStartX + swipeThreshold) {
+                prevImage();
+            }
         }
 
         function nextImage() {
