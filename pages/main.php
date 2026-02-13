@@ -72,20 +72,10 @@ if (isset($_POST['submit_callback'])) {
                 <!-- Catalog Download Button - Top Right -->
                 <div style="position: absolute; top: 30px; right: 30px; z-index: 5;">
                     <a href="./assets/documents/nauticalfs2026.pdf" download="NauticalFS_Catalog_2026.pdf"
-                        class="catalog-download-btn" aria-label="Download our company catalog">
-                        <div class="catalog-btn-content">
-                            <div class="catalog-icon-wrapper">
-                                <i class="fas fa-file-pdf" aria-hidden="true"></i>
-                            </div>
-                            <div class="catalog-text">
-                                <span class="catalog-label">Company Catalog</span>
-                                <span class="catalog-action">Download PDF</span>
-                            </div>
-                            <div class="catalog-download-icon">
-                                <i class="fas fa-download" aria-hidden="true"></i>
-                            </div>
-                        </div>
-                        <div class="catalog-pulse"></div>
+                        class="catalog-download-btn" aria-label="Download our 2026 catalog">
+                        <span class="catalog-year">2026</span>
+                        <span class="catalog-title">CATALOG</span>
+                        <i class="fas fa-download catalog-icon" aria-hidden="true"></i>
                     </a>
                 </div>
 
@@ -762,187 +752,103 @@ if (isset($_POST['submit_callback'])) {
     </div>
 
     <style>
-        /* Catalog Download Button Styles */
+        /* Catalog Download Button Styles - Minimal Theme */
         .catalog-download-btn {
             display: inline-flex;
             align-items: center;
+            gap: 12px;
             text-decoration: none;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(20px);
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            border-radius: 50px;
-            padding: 12px 24px 12px 12px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.8);
+            border-radius: 4px;
+            padding: 12px 20px;
+            transition: all 0.3s ease;
             position: relative;
-            overflow: hidden;
         }
 
         .catalog-download-btn:hover {
-            transform: translateY(-3px) scale(1.02);
-            box-shadow: 0 12px 48px rgba(0, 0, 0, 0.4);
             background: rgba(255, 255, 255, 1);
-            border-color: rgba(0, 0, 0, 0.1);
+            border-color: rgba(255, 255, 255, 1);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
         }
 
-        .catalog-btn-content {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            position: relative;
-            z-index: 2;
-        }
-
-        .catalog-icon-wrapper {
-            width: 45px;
-            height: 45px;
-            background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 12px rgba(220, 38, 38, 0.4);
-            transition: all 0.3s ease;
-        }
-
-        .catalog-download-btn:hover .catalog-icon-wrapper {
-            transform: rotate(10deg) scale(1.1);
-            box-shadow: 0 6px 20px rgba(220, 38, 38, 0.6);
-        }
-
-        .catalog-icon-wrapper i {
-            color: #ffffff;
-            font-size: 20px;
-        }
-
-        .catalog-text {
-            display: flex;
-            flex-direction: column;
-            gap: 2px;
-        }
-
-        .catalog-label {
-            font-size: 11px;
-            font-weight: 600;
-            color: #666;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            line-height: 1;
-        }
-
-        .catalog-action {
-            font-size: 15px;
+        .catalog-year {
+            font-size: 24px;
             font-weight: 800;
-            color: #000;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            line-height: 1;
-        }
-
-        .catalog-download-icon {
-            width: 32px;
-            height: 32px;
-            background: #000;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-        }
-
-        .catalog-download-btn:hover .catalog-download-icon {
-            background: #dc2626;
-            transform: translateY(2px);
-        }
-
-        .catalog-download-icon i {
             color: #ffffff;
-            font-size: 14px;
+            line-height: 1;
+            letter-spacing: -1px;
+            transition: color 0.3s ease;
         }
 
-        /* Pulse Animation */
-        .catalog-pulse {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 100%;
-            height: 100%;
-            border-radius: 50px;
-            background: rgba(220, 38, 38, 0.3);
-            z-index: 1;
-            animation: catalogPulse 2s ease-out infinite;
+        .catalog-download-btn:hover .catalog-year {
+            color: #000000;
         }
 
-        @keyframes catalogPulse {
-            0% {
-                transform: translate(-50%, -50%) scale(1);
-                opacity: 1;
-            }
+        .catalog-title {
+            font-size: 13px;
+            font-weight: 700;
+            color: #ffffff;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            line-height: 1;
+            transition: color 0.3s ease;
+        }
 
-            100% {
-                transform: translate(-50%, -50%) scale(1.3);
-                opacity: 0;
-            }
+        .catalog-download-btn:hover .catalog-title {
+            color: #000000;
+        }
+
+        .catalog-icon {
+            font-size: 16px;
+            color: #ffffff;
+            transition: color 0.3s ease;
+            margin-left: 4px;
+        }
+
+        .catalog-download-btn:hover .catalog-icon {
+            color: #000000;
         }
 
         /* Mobile Responsive */
         @media (max-width: 768px) {
             .catalog-download-btn {
-                padding: 10px 16px 10px 10px;
-                border-radius: 40px;
+                padding: 10px 16px;
+                gap: 10px;
             }
 
-            .catalog-icon-wrapper {
-                width: 38px;
-                height: 38px;
+            .catalog-year {
+                font-size: 20px;
             }
 
-            .catalog-icon-wrapper i {
-                font-size: 16px;
+            .catalog-title {
+                font-size: 11px;
+                letter-spacing: 1px;
             }
 
-            .catalog-text {
-                gap: 1px;
-            }
-
-            .catalog-label {
-                font-size: 9px;
-            }
-
-            .catalog-action {
-                font-size: 12px;
-            }
-
-            .catalog-download-icon {
-                width: 28px;
-                height: 28px;
-            }
-
-            .catalog-download-icon i {
-                font-size: 12px;
+            .catalog-icon {
+                font-size: 14px;
             }
         }
 
         @media (max-width: 576px) {
-
-            /* Compact version for very small screens */
             .catalog-download-btn {
-                padding: 8px 12px 8px 8px;
+                padding: 10px 14px;
+                gap: 8px;
             }
 
-            .catalog-text {
-                display: none;
+            .catalog-year {
+                font-size: 18px;
             }
 
-            .catalog-icon-wrapper {
-                width: 40px;
-                height: 40px;
+            .catalog-title {
+                font-size: 10px;
             }
 
-            .catalog-download-icon {
-                width: 30px;
-                height: 30px;
+            .catalog-icon {
+                font-size: 13px;
             }
         }
 
