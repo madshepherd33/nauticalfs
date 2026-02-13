@@ -61,6 +61,11 @@ if (isset($_POST['submit_callback'])) {
                 </div>
                 <div
                     style="position: absolute; bottom: 60px; left: 60px; z-index: 5; max-width: 600px; text-align: left;">
+                    <h1
+                        style="color: #ffffff; font-size: 2.4rem; font-weight: 300; margin-bottom: 25px; line-height: 1.3; letter-spacing: 1px; text-shadow: 2px 2px 15px rgba(0,0,0,0.8);">
+                        Your partner in <br>
+                        <span style="font-weight: 700; border-bottom: 2px solid #fff;">Repair & Maintenance</span>
+                    </h1>
                     <p
                         style="color: #ffffff; font-size: 1.1rem; font-weight: 400; margin-bottom: 20px; line-height: 1.4; letter-spacing: 0.5px; text-shadow: 2px 2px 10px rgba(0,0,0,0.8);">
                         Our 2026 Catalogue is now available.
@@ -746,45 +751,45 @@ if (isset($_POST['submit_callback'])) {
     </div>
 
     <style>
-        /* Catalog Download Button Styles - Minimal Theme */
+        /* Catalog Download Button Styles - Minimal Theme Refined */
         .catalog-download-btn {
             display: inline-flex;
             align-items: center;
             gap: 12px;
             text-decoration: none;
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(10px);
-            border: 2px solid rgba(255, 255, 255, 0.8);
+            background: #ffffff;
+            border: 2px solid #ffffff;
             border-radius: 4px;
-            padding: 12px 20px;
+            padding: 12px 22px;
             transition: all 0.3s ease;
             position: relative;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
         }
 
         .catalog-download-btn:hover {
-            background: rgba(255, 255, 255, 1);
-            border-color: rgba(255, 255, 255, 1);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            background: #000000;
+            border-color: #000000;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
         }
 
         .catalog-year {
             font-size: 24px;
             font-weight: 800;
-            color: #ffffff;
+            color: #000000;
             line-height: 1;
             letter-spacing: -1px;
             transition: color 0.3s ease;
         }
 
         .catalog-download-btn:hover .catalog-year {
-            color: #000000;
+            color: #ffffff;
         }
 
         .catalog-title {
             font-size: 13px;
             font-weight: 700;
-            color: #ffffff;
+            color: #000000;
             text-transform: uppercase;
             letter-spacing: 1.5px;
             line-height: 1;
@@ -792,18 +797,18 @@ if (isset($_POST['submit_callback'])) {
         }
 
         .catalog-download-btn:hover .catalog-title {
-            color: #000000;
+            color: #ffffff;
         }
 
         .catalog-icon {
             font-size: 16px;
-            color: #ffffff;
+            color: #000000;
             transition: color 0.3s ease;
             margin-left: 4px;
         }
 
         .catalog-download-btn:hover .catalog-icon {
-            color: #000000;
+            color: #ffffff;
         }
 
         /* Mobile Responsive */
