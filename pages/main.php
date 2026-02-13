@@ -212,6 +212,7 @@ if (isset($_POST['submit_callback'])) {
                                                 <div class="compare-img after-img">
                                                     <img data-after-src="<?php echo htmlspecialchars($pair['after']); ?>"
                                                         style="opacity: 0; transition: opacity 0.4s ease;"
+                                                        style="opacity: 0; transition: opacity 0.5s ease;"
                                                         alt="After transformation - Project <?php echo $num; ?>">
                                                     <div class="label label-after" aria-hidden="true">AFTER</div>
                                                 </div>

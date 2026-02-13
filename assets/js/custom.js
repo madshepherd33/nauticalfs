@@ -802,26 +802,30 @@
 
   // comparison-carousel - start
   // --------------------------------------------------
-  function syncComparisonImages(container) {
-    const sliders = container ? $(container).find('.comparison-slider') : $('.comparison-slider');
-    sliders.each(function () {
+  function syncComparisonImages() {
+    $('.comparison-slider').each(function () {
       const $slider = $(this);
       const $beforeImg = $slider.find('.before-img img');
       const $afterImg = $slider.find('.after-img img');
-      const afterSrc = $afterImg.data('after-src');
+      const afterSrc = $afterImg.attr('data-after-src');
 
+      // Skip if already loaded or no source
       if (!afterSrc || $afterImg.attr('src')) return;
 
       const beforeSrc = $beforeImg.attr('src');
-      if (beforeSrc) {
-        // Create a temporary image to check for load completion
-        const tempImg = new Image();
-        tempImg.onload = function () {
+
+      // Only proceed if before image has a source and is considered 'loaded' by the browser
+      if (beforeSrc && $beforeImg[0].complete && $beforeImg[0].naturalWidth !== 0) {
+        $afterImg.attr('src', afterSrc).on('load', function () {
+          $(this).css('opacity', 1);
+        });
+      } else {
+        // If not loaded yet, wait for it
+        $beforeImg.one('load', function () {
           $afterImg.attr('src', afterSrc).on('load', function () {
             $(this).css('opacity', 1);
           });
-        };
-        tempImg.src = beforeSrc;
+        });
       }
     });
   }
@@ -833,23 +837,19 @@
     margin: 0,
     nav: true,
     dots: true,
-    smartSpeed: 400, // Snapier transition
+    smartSpeed: 400,
     fluidSpeed: 400,
-    lazyLoad: true, // Enable lazy loading for large images
+    lazyLoad: true,
     autoplay: false,
     mouseDrag: false,
     touchDrag: false,
     navText: ["<i class='fas fa-chevron-left'></i>", "<i class='fas fa-chevron-right'></i>"],
     fallbackEasing: 'swing',
     onInitialized: function () {
-      setTimeout(syncComparisonImages, 500);
+      setTimeout(syncComparisonImages, 200);
     },
-    onTranslated: function () {
-      syncComparisonImages();
-    },
-    onLazyLoaded: function () {
-      syncComparisonImages();
-    }
+    onTranslated: syncComparisonImages,
+    onLazyLoaded: syncComparisonImages
   });
   // comparison-carousel - end
   // --------------------------------------------------
