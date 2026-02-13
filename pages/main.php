@@ -61,16 +61,10 @@ if (isset($_POST['submit_callback'])) {
                 </div>
                 <div
                     style="position: absolute; bottom: 60px; left: 60px; z-index: 5; max-width: 600px; text-align: left;">
-                    <h1
-                        style="color: #ffffff; font-size: 2.4rem; font-weight: 300; margin-bottom: 25px; line-height: 1.3; letter-spacing: 1px; text-shadow: 2px 2px 15px rgba(0,0,0,0.8);">
-                        Your partner in <br>
-                        <span style="font-weight: 700; border-bottom: 2px solid #fff;">Repair & Maintenance</span>
-                    </h1>
-                    <a href="./index.php?f=our_work" class="btn-hero-modern"
-                        aria-label="Explore our work and projects">Explore Our Work</a>
-                </div>
-                <!-- Catalog Download Button - Top Right -->
-                <div style="position: absolute; top: 30px; right: 30px; z-index: 5;">
+                    <p
+                        style="color: #ffffff; font-size: 1.1rem; font-weight: 400; margin-bottom: 20px; line-height: 1.4; letter-spacing: 0.5px; text-shadow: 2px 2px 10px rgba(0,0,0,0.8);">
+                        Our 2026 Catalogue is now available.
+                    </p>
                     <a href="./assets/documents/nauticalfs2026.pdf" download="NauticalFS_Catalog_2026.pdf"
                         class="catalog-download-btn" aria-label="Download our 2026 catalog">
                         <span class="catalog-year">2026</span>
