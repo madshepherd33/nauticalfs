@@ -816,10 +816,6 @@
     touchDrag: false,
     navText: ["<i class='fas fa-chevron-left'></i>", "<i class='fas fa-chevron-right'></i>"],
     fallbackEasing: 'swing',
-    onLazyLoaded: function (e) {
-      // Add class to container when images are loaded to prevent flickering
-      $(e.target).find('.comparison-slider').addClass('before-loaded');
-    }
   });
   // comparison-carousel - end
   // --------------------------------------------------
