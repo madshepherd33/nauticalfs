@@ -210,7 +210,7 @@ if (isset($_POST['submit_callback'])) {
                                             <div class="comparison-slider" role="img"
                                                 aria-label="Project <?php echo $num; ?> transformation comparison">
                                                 <div class="compare-img after-img">
-                                                    <img data-after-src="<?php echo htmlspecialchars($pair['after']); ?>"
+                                                    <img data-after-src="<?php echo htmlspecialchars($pair['after']); ?>?v=<?php echo filemtime($pair['after']); ?>"
                                                         style="opacity: 0; transition: opacity 0.5s ease;"
                                                         alt="After transformation - Project <?php echo $num; ?>">
                                                     <div class="label label-after" aria-hidden="true">AFTER</div>
@@ -218,7 +218,7 @@ if (isset($_POST['submit_callback'])) {
                                                 <div class="compare-img before-img"
                                                     style="clip-path: inset(0 20% 0 0); width: 100%;">
                                                     <img class="owl-lazy"
-                                                        data-src="<?php echo htmlspecialchars($pair['before']); ?>"
+                                                        data-src="<?php echo htmlspecialchars($pair['before']); ?>?v=<?php echo filemtime($pair['before']); ?>"
                                                         alt="Before transformation - Project <?php echo $num; ?>">
                                                     <div class="label label-before" aria-hidden="true">BEFORE</div>
                                                 </div>
