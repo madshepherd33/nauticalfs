@@ -802,7 +802,32 @@
 
   // comparison-carousel - start
   // --------------------------------------------------
-  $('#comparison-carousel').owlCarousel({
+  function syncComparisonImages(container) {
+    const sliders = container ? $(container).find('.comparison-slider') : $('.comparison-slider');
+    sliders.each(function () {
+      const $slider = $(this);
+      const $beforeImg = $slider.find('.before-img img');
+      const $afterImg = $slider.find('.after-img img');
+      const afterSrc = $afterImg.data('after-src');
+
+      if (!afterSrc || $afterImg.attr('src')) return;
+
+      const beforeSrc = $beforeImg.attr('src');
+      if (beforeSrc) {
+        // Create a temporary image to check for load completion
+        const tempImg = new Image();
+        tempImg.onload = function () {
+          $afterImg.attr('src', afterSrc).on('load', function () {
+            $(this).css('opacity', 1);
+          });
+        };
+        tempImg.src = beforeSrc;
+      }
+    });
+  }
+
+  const $compCarousel = $('#comparison-carousel');
+  $compCarousel.owlCarousel({
     items: 1,
     loop: true,
     margin: 0,
@@ -816,6 +841,15 @@
     touchDrag: false,
     navText: ["<i class='fas fa-chevron-left'></i>", "<i class='fas fa-chevron-right'></i>"],
     fallbackEasing: 'swing',
+    onInitialized: function () {
+      setTimeout(syncComparisonImages, 500);
+    },
+    onTranslated: function () {
+      syncComparisonImages();
+    },
+    onLazyLoaded: function () {
+      syncComparisonImages();
+    }
   });
   // comparison-carousel - end
   // --------------------------------------------------

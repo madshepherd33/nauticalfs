@@ -210,7 +210,8 @@ if (isset($_POST['submit_callback'])) {
                                             <div class="comparison-slider" role="img"
                                                 aria-label="Project <?php echo $num; ?> transformation comparison">
                                                 <div class="compare-img after-img">
-                                                    <img class="owl-lazy" data-src="<?php echo htmlspecialchars($pair['after']); ?>"
+                                                    <img data-after-src="<?php echo htmlspecialchars($pair['after']); ?>"
+                                                        style="opacity: 0; transition: opacity 0.4s ease;"
                                                         alt="After transformation - Project <?php echo $num; ?>">
                                                     <div class="label label-after" aria-hidden="true">AFTER</div>
                                                 </div>
@@ -1476,9 +1477,9 @@ if (isset($_POST['submit_callback'])) {
                             successMessage.remove();
                         }, 500);
                     }, 5000);
-                }
-            }
-        });
+                }             
+          }
+    });
     </script>
 </body>
 
