@@ -211,7 +211,6 @@ if (isset($_POST['submit_callback'])) {
                                                 aria-label="Project <?php echo $num; ?> transformation comparison">
                                                 <div class="compare-img after-img">
                                                     <img data-after-src="<?php echo htmlspecialchars($pair['after']); ?>"
-                                                        style="opacity: 0; transition: opacity 0.4s ease;"
                                                         style="opacity: 0; transition: opacity 0.5s ease;"
                                                         alt="After transformation - Project <?php echo $num; ?>">
                                                     <div class="label label-after" aria-hidden="true">AFTER</div>
@@ -1478,9 +1477,9 @@ if (isset($_POST['submit_callback'])) {
                             successMessage.remove();
                         }, 500);
                     }, 5000);
-                }             
-          }
-    });
+                }
+            }
+        });
     </script>
 </body>
 
