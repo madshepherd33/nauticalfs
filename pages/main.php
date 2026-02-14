@@ -70,7 +70,7 @@ if (isset($_POST['submit_callback'])) {
                         style="color: #ffffff; font-size: 1.1rem; font-weight: 400; margin-bottom: 20px; line-height: 1.4; letter-spacing: 0.5px; text-shadow: 2px 2px 10px rgba(0,0,0,0.8);">
                         Our 2026 Catalogue is now available.
                     </p>
-                    <a href="./assets/documents/nauticalfs2026.pdf" target="_blank" rel="noopener noreferrer"
+                    <a href="./documents/nauticalfs2026.pdf" target="_blank" rel="noopener noreferrer"
                         class="catalog-download-btn" aria-label="Open our 2026 catalog">
                         <span class="catalog-year">2026</span>
                         <span class="catalog-title">CATALOG</span>
