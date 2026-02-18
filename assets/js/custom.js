@@ -802,34 +802,6 @@
 
   // comparison-carousel - start
   // --------------------------------------------------
-  function syncComparisonImages() {
-    $('.comparison-slider').each(function () {
-      const $slider = $(this);
-      const $beforeImg = $slider.find('.before-img img');
-      const $afterImg = $slider.find('.after-img img');
-      const afterSrc = $afterImg.attr('data-after-src');
-
-      // Skip if already loaded or no source
-      if (!afterSrc || $afterImg.attr('src')) return;
-
-      const beforeSrc = $beforeImg.attr('src');
-
-      // Only proceed if before image has a source and is considered 'loaded' by the browser
-      if (beforeSrc && $beforeImg[0].complete && $beforeImg[0].naturalWidth !== 0) {
-        $afterImg.attr('src', afterSrc).on('load', function () {
-          $(this).css('opacity', 1);
-        });
-      } else {
-        // If not loaded yet, wait for it
-        $beforeImg.one('load', function () {
-          $afterImg.attr('src', afterSrc).on('load', function () {
-            $(this).css('opacity', 1);
-          });
-        });
-      }
-    });
-  }
-
   const $compCarousel = $('#comparison-carousel');
   $compCarousel.owlCarousel({
     items: 1,
@@ -839,17 +811,22 @@
     dots: true,
     smartSpeed: 400,
     fluidSpeed: 400,
-    lazyLoad: true,
     autoplay: false,
     mouseDrag: false,
     touchDrag: false,
     navText: ["<i class='fas fa-chevron-left'></i>", "<i class='fas fa-chevron-right'></i>"],
     fallbackEasing: 'swing',
-    onInitialized: function () {
-      setTimeout(syncComparisonImages, 200);
-    },
-    onTranslated: syncComparisonImages,
-    onLazyLoaded: syncComparisonImages
+    onTranslated: function () {
+      // Reset slider position to 80% for the active slide after navigation
+      var $active = $compCarousel.find('.owl-item.active');
+      var $input = $active.find('.slider-input');
+      var $container = $active.find('.comparison-slider');
+      if ($input.length) {
+        $input.val(80);
+        $container.find('.before-img').css('clip-path', 'inset(0 20% 0 0)');
+        $container.find('.slider-handle').css('left', '80%');
+      }
+    }
   });
   // comparison-carousel - end
   // --------------------------------------------------
