@@ -571,6 +571,12 @@ $categories = [
         'desc_title' => 'Workshop Services',
         'desc' => 'Comprehensive workshop facilities for component rebuilding, valve reconditioning, and precision machining. Our local facility ensures fast turnaround times for critical vessel parts.',
         'folder' => 'img/our_work/workshop'
+    ],
+    'electric' => [
+        'title' => 'Electrical Works',
+        'desc_title' => 'Electrical & Automation Services',
+        'desc' => 'Expert electrical troubleshooting, system installations, and automation services for maritime vessels.',
+        'folder' => 'img/our_work/electric'
     ]
 ];
 
@@ -647,16 +653,17 @@ function getImages($folder)
                             <img src="<?php echo $img; ?>" alt="<?php echo $cat['title']; ?>" loading="lazy">
                             <div class="gallery-item-overlay">
                                 <div class="gallery-item-info">
-                                    <p>Click to view full size</p> </div>
+                                    <p>Click to view full size</p>
                                 </div>
                             </div>
-                        <?php endforeach; ?>
-                    <?php endif; ?>
-                </div>
-                <?php $isFirst = false; ?>
-            <?php endforeach; ?>
+                        </div>
+                    <?php endforeach; ?>
+                <?php endif; ?>
+            </div>
+            <?php $isFirst = false; ?>
+        <?php endforeach; ?>
 
-        </div>
+    </div>
 </section>
 
 <!-- Lightbox -->
@@ -797,15 +804,15 @@ function getImages($folder)
             // Hide immediately to prevent flash of old image
             lbImg.style.opacity = '0';
             lbImg.classList.remove('slide-left', 'slide-right');
-            
+
             // Small timeout to allow source change and reflow
             setTimeout(() => {
                 lbImg.src = currentImages[currentIndex].src;
                 currentSpan.textContent = currentIndex + 1;
-                
+
                 // Trigger reflow
                 void lbImg.offsetWidth;
-                
+
                 lbImg.classList.add(direction === 'left' ? 'slide-left' : 'slide-right');
                 lbImg.style.opacity = '1';
             }, 50);
