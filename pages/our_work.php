@@ -574,8 +574,8 @@ $categories = [
     ],
     'electric' => [
         'title' => 'Electrical Works',
-        'desc_title' => 'Electrical & Automation Services',
-        'desc' => 'Expert electrical troubleshooting, system installations, and automation services for maritime vessels.',
+        'desc_title' => 'Electrical Services',
+        'desc' => 'Expert electrical troubleshooting and system installations for maritime vessels.',
         'folder' => 'img/our_work/electric'
     ]
 ];
